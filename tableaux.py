@@ -82,6 +82,12 @@ def Inorder2Tree(A):
     else:
         return -1
 
+def list2String(l):
+	ls = []
+	for f in l:
+		ls.append(Inorder(f))
+	return ls
+
 ##############################################################################
 # Definición de funciones de tableaux
 ##############################################################################
@@ -119,7 +125,7 @@ def par_complementario(l):
     # contiene un par complementario
     # Input: l, una lista de literales
     # Output: True/False
-    ls = []
+    ls = list2String(l)
     lsc = []
     for x in l:
         ls.append(Inorder(x))
