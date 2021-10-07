@@ -135,24 +135,45 @@ def es_literal(f):
     # Esta función determina si el árbol f es un literal
     # Input: f, una fórmula como árbol
     # Output: True/False
-    pass
-
+	if f.right == None:
+		return True
+	else:
+		if f.label == "-" and f.right.right == None:
+			return True
+	return False
 
 def no_literales(l):
     # Esta función determina si una lista de fórmulas contiene
     # solo literales
     # Input: l, una lista de fórmulas como árboles
-    # Output: None/f, tal que f no es literal
-
-    pass
+    # Output: None/f, tal que f no es literal\
+	for f in l:
+		if not(es_literal(f)):
+			return "No todos son literales"
+	return "Solo hay literales"
 
 
 def clasificacion(f):
-    # clasifica una fórmula como alfa o beta
-    # Input: f, una fórmula como árbol
-    # Output: string de la clasificación de la formula
-
-    pass
+	# clasifica una fórmula como alfa o beta
+	# Input: f, una fórmula como árbol
+	# Output: string de la clasificación de la formula
+	if f.label =='-':
+		if f.right.label == '-':
+			return "1ALFA"
+		elif f.right.label == 'O':
+			return "3ALFA"
+		elif f.right.label == '>':
+			return "4ALFA"
+		elif f.right.label == 'Y':
+			return "3BETA"
+	elif f.label == 'Y':
+		return "2ALFA"
+	elif f.label == '=':
+		return "5ALFA"
+	elif f.label == 'O':
+		return "1BETA"
+	elif f.label == '>':
+		return "2BETA"
 
 
 def clasifica_y_extiende(f, h):
@@ -210,8 +231,3 @@ def Tableaux(f):
             clasifica_y_extiende(x, h)
 
     return listaInterpsVerdaderas
-
-a = [Tree('b', None,None), Tree('-',None,Tree('a',None,None)), Tree('-',None,Tree('c',None,None)), Tree('a',None,None), Tree('d',None,None)]
-if(par_complementario(a)):
-    print("Salio bien :)")
-else
